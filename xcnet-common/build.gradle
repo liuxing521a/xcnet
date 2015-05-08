@@ -1,0 +1,24 @@
+ext {
+    archiveBaseName = "xcnet-common"
+}
+
+eclipse.project {
+  name = archiveBaseName
+}
+
+dependencies {
+		
+	// common libs
+	compile ("org.javassist:javassist:${javassist_version}")
+	compile ("com.alibaba:fastjson:${fastjson_version}")	
+	compile ("com.caucho:hessian:${hessian_version}")
+	
+	// logger libs
+	compile ("log4j:log4j:${log4j_version}")
+	compile ("ch.qos.logback:logback-core:${logbac_version}")
+	compile ("org.slf4j:slf4j-api:${slf4j_version}")
+	compile ("ch.qos.logback:logback-classic:${classic_version}")
+		
+	// test libs
+	testCompile("junit:junit:${junit_version}") 
+}
