@@ -21,7 +21,7 @@ import org.itas.xcnet.common.logger.LoggerFactory;
 
 public final class ReflectUtils 
 {
-	private static final Logger logger = LoggerFactory.getLogger(ReflectUtils.class);
+	static final Logger logger = LoggerFactory.getLogger(ReflectUtils.class);
 	/**
 	 * void(V)
 	 */
@@ -80,6 +80,12 @@ public final class ReflectUtils
 	public static final String DESC_REGEX = "(?:(?:[VZBCDFIJS])|" + CLASS_DESC + "|" + ARRAY_DESC + ")";
 	
 	public static final Pattern DESC_PATTERN = Pattern.compile(DESC_REGEX);
+	
+	public static final Pattern GETTER_METHOD_DESC_PATTERN = Pattern.compile("get([A-Z][_a-zA-Z0-9]*)\\(\\)(" + DESC_REGEX + ")");
+	
+	public static final Pattern SETTER_METHOD_DESC_PATTERN = Pattern.compile("set([A-Z][_a-zA-Z0-9]*)\\((" + DESC_REGEX + ")\\)V");
+	
+	public static final Pattern IS_HAS_CAN_METHOD_DESC_PATTERN = Pattern.compile("(?:is|has|can)([A-Z][_a-zA-Z0-9]*)\\(\\)Z");
 	
 	/**
 	 * is compatible.
@@ -1095,16 +1101,10 @@ public final class ReflectUtils
 			
 			throw e;
 		}
-		
 	}
 	
-	public static void main(String[] args) 
+	private ReflectUtils()
 	{
-		logger.trace(getCodeBase(ReflectUtils.class));
-		logger.trace(getName(ReflectUtils.class));
-		ReflectUtils[][][] aa = new ReflectUtils[1][1][1];
-		logger.trace(getName(aa.getClass()));
-		logger.trace(getSignature("getName", new Class<?>[]{Method.class}));
 	}
 	
 }

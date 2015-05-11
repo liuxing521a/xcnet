@@ -17,7 +17,7 @@ import java.util.Set;
  * @author liuzhen<liuxing521a@163.com>
  * @createTime 2015年5月8日下午4:56:42
  */
-public class ClassHelper 
+public final class ClassHelper 
 {
 	 /** 
 	  * Suffix for array class names: "[]" 
@@ -178,4 +178,7 @@ public class ClassHelper
 		}
 	}
 	
+	private ClassHelper()
+	{
+	}
 }

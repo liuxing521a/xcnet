@@ -1,5 +1,6 @@
 package org.itas.xcnet.common.bytecode;
 
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -193,7 +194,7 @@ public class ClassGenerator
 	{
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(modify(mod)).append(' ').append(ReflectUtils.getName(returnType)).append(name);
+		sb.append(modify(mod)).append(' ').append(ReflectUtils.getName(returnType)).append(' ').append(name);
 		sb.append('(');
 		
 		for (int i = 0; i < paramTypes.length; i++) 
@@ -334,6 +335,7 @@ public class ClassGenerator
 				mClassName = ((mSuperClass == null || !javassist.Modifier.isPublic(ctcs.getModifiers()))
 						? ClassGenerator.class.getName() : mSuperClass + "$sc") + clsId;
 			}
+			mCtc = mPool.makeClass(mClassName);
 			
 			// add super class
 			if (mSuperClass != null)
@@ -366,9 +368,13 @@ public class ClassGenerator
 				for (String code : mMethods) 
 				{
 					if( code.charAt(0) == ':' )
+					{
 						mCtc.addMethod(CtNewMethod.copy(getCtMethod(mCopyMethods.get(code.substring(1))), code.substring(1, code.indexOf('(')), mCtc, null));
+					}
 					else
+					{
 						mCtc.addMethod(CtNewMethod.make(code, mCtc));
+					}
 				}
 			}
 			
@@ -394,6 +400,11 @@ public class ClassGenerator
 				}
 			}
 			
+			try {
+				mCtc.writeFile("D:/");// TODO
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return mCtc.toClass();
 		} 
 		catch (RuntimeException|NotFoundException|CannotCompileException e) 
