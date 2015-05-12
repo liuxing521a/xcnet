@@ -28,9 +28,10 @@ public class WrapperTest
 		Assert.assertEquals("your name", w.getPropertyValue(obj, "name"));
 		
 		w.setPropertyValue(obj, "name", "航宇轩");
-		Assert.assertEquals("your name", w.getPropertyValue(obj, "航宇轩"));
+		Assert.assertEquals("航宇轩", w.getPropertyValue(obj, "name"));
 		
-		w.invokeMethod(obj, "hello", new Class<?>[]{String.class}, new Object[]{"玟航"});
+		String str = (String)w.invokeMethod(obj, "hello", new Class<?>[]{String.class}, new Object[]{"玟航"});
+		Assert.assertEquals("hello 玟航", str);
 	}
 
 	public static class Impl0
@@ -47,7 +48,7 @@ public class WrapperTest
 	{
 		void setName(String name);
 		
-		void hello(String name);
+		String hello(String name);
 		
 		int showInt(int value);
 		
@@ -75,9 +76,10 @@ public class WrapperTest
 		}
 
 		@Override
-		public void hello(String name) 
+		public String hello(String name) 
 		{
 			System.out.println("hello " + name);
+			return "hello " + name;
 		}
 
 		@Override

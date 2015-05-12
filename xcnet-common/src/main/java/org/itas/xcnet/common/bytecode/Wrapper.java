@@ -326,7 +326,7 @@ public abstract class Wrapper
 			if (override)
 			{
 				int len = m.getParameterTypes().length;
-				c3.append(" && ").append("$3.length = ").append("len");
+				c3.append(" && ").append("$3.length == ").append(len);
 				if (len > 0)
 				{
 					for (int i = 0; i < len; i++) 
@@ -344,7 +344,7 @@ public abstract class Wrapper
 			}
 			else
 			{
-				c3.append(" return ($w)w.").append(mn).append('(').append(args(m.getParameterTypes(), "$4);")).append(");");
+				c3.append(" return ($w)w.").append(mn).append('(').append(args(m.getParameterTypes(), "$4")).append(");");
 			}
 			c3.append('}');
 			
@@ -403,7 +403,7 @@ public abstract class Wrapper
 		
 		for (int i = 0, len = ms.size(); i < len; i++) 
 		{
-			cc.addConstructor("public static Class[] mts" + i + ";");
+			cc.addField("public static Class[] mts" + i + ";");
 		}
 		
 		cc.addMethod("public String[] getPropertyNames(){ return pns; }");

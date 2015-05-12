@@ -69,8 +69,8 @@ public final class ReflectUtils
 	
 	public static final Class<?> [] EMPTY_CLASS_ARRAY = new Class<?>[0];
 	
-	public static final String JAVA_IDENT_REGEX = "(?:[_$a-zA-Z][_$z-zA-Z0-9])";
-	
+	public static final String JAVA_IDENT_REGEX = "(?:[_$a-zA-Z][_$a-zA-Z0-9]*)";
+
 	public static final String JAVA_NAME_REGEX = "(?:" + JAVA_IDENT_REGEX + "(?:\\." + JAVA_IDENT_REGEX + ")*)";
 	
 	public static final String CLASS_DESC = "(?:L" + JAVA_IDENT_REGEX   + "(?:\\/" + JAVA_IDENT_REGEX + ")*;)";
@@ -82,9 +82,9 @@ public final class ReflectUtils
 	public static final Pattern DESC_PATTERN = Pattern.compile(DESC_REGEX);
 	
 	public static final Pattern GETTER_METHOD_DESC_PATTERN = Pattern.compile("get([A-Z][_a-zA-Z0-9]*)\\(\\)(" + DESC_REGEX + ")");
-	
+
 	public static final Pattern SETTER_METHOD_DESC_PATTERN = Pattern.compile("set([A-Z][_a-zA-Z0-9]*)\\((" + DESC_REGEX + ")\\)V");
-	
+
 	public static final Pattern IS_HAS_CAN_METHOD_DESC_PATTERN = Pattern.compile("(?:is|has|can)([A-Z][_a-zA-Z0-9]*)\\(\\)Z");
 	
 	/**

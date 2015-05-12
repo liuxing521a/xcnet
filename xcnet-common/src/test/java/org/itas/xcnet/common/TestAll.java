@@ -5,6 +5,7 @@ package org.itas.xcnet.common;
 
 import org.itas.xcnet.common.bytecode.ProxyTest;
 import org.itas.xcnet.common.bytecode.WrapperTest;
+import org.itas.xcnet.common.utils.CollectionUtilsTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -18,7 +19,11 @@ import org.junit.runners.Suite.SuiteClasses;
 	//========bytecode=========
 	ProxyTest.class,
 	WrapperTest.class,
+	
+	//========utils==========
+	CollectionUtilsTest.class,
 })
-public class TestAll {
+public class TestAll 
+{
 
 }
