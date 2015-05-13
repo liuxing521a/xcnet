@@ -135,7 +135,7 @@ public class ExtensionLoader<T>
 		return (T)ref.get();
 	}
 	
-	public boolean hasExtention(String name)
+	public boolean hasExtension(String name)
 	{
 		if (Objects.isEmpty(name))
 		{
@@ -364,7 +364,7 @@ public class ExtensionLoader<T>
 				{
 					String attribMethod = null;
 					LBL_PTS:
-					for (int i = 0; i < pts.length; i++)
+					for (int i = 0; i < pts.length; ++i)
 					{
 						for (Method m : pts[i].getMethods()) 
 						{
@@ -372,7 +372,7 @@ public class ExtensionLoader<T>
 							if ((name.startsWith("get") || name.length() > 3) &&
 									Modifier.isPublic(m.getModifiers()) &&
 									!Modifier.isStatic(m.getModifiers()) &&
-									m.getParameterTypes().length > 0 &&
+									m.getParameterTypes().length == 0 &&
 									m.getReturnType() == URL.class)
 							{
 								urlTypeIndex = i;
@@ -395,7 +395,7 @@ public class ExtensionLoader<T>
 							urlTypeIndex, attribMethod, pts[urlTypeIndex].getName(), attribMethod);
 					code.append(s);
 					
-					s = String.format("%s url = arg%d.%s", URL.class.getName(), urlTypeIndex, attribMethod);
+					s = String.format("%s url = arg%d.%s();", URL.class.getName(), urlTypeIndex, attribMethod);
 					code.append(s);
 				}
 				
@@ -470,11 +470,11 @@ public class ExtensionLoader<T>
 				String s = String.format("if (extName == null) { "
 						+ "throw new IllegalStateException(\"Fail to get extension(%s) name from url(\" + url.toString() + \") use keys(%s)\"); }", 
 						type.getName(), Arrays.toString(value));
-				code.append("s");
+				code.append(s);
 				
-				s = String.format("%s extension = (%s<s)%s.getExtensionLoader(%s.class).getExtension(extName);", 
+				s = String.format("%s extension = (%<s)%s.getExtensionLoader(%s.class).getExtension(extName);", 
 						type.getName(), ExtensionLoader.class.getName(), type.getName());
-				code.append("s");
+				code.append(s);
 				
 				if (!rt.equals(void.class))
 				{

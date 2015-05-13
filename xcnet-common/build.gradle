@@ -11,6 +11,7 @@ dependencies {
 	// common libs
 	compile ("org.javassist:javassist:${javassist_version}")
 	compile ("com.alibaba:fastjson:${fastjson_version}")	
+	compile ("org.hamcrest:hamcrest-core:${hamcrest_version}")
 	compile ("com.caucho:hessian:${hessian_version}")
 	
 	// logger libs

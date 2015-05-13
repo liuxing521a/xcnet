@@ -1,8 +1,9 @@
 /**
  * 
  */
-package org.itas.xcnet.common;
+package org.itas.xcnet;
 
+import org.itas.xcnet.common.ExtensionLoaderTest;
 import org.itas.xcnet.common.bytecode.ProxyTest;
 import org.itas.xcnet.common.bytecode.WrapperTest;
 import org.itas.xcnet.common.utils.CollectionUtilsTest;
@@ -16,6 +17,9 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+	//========common===========
+	ExtensionLoaderTest.class,
+	
 	//========bytecode=========
 	ProxyTest.class,
 	WrapperTest.class,
