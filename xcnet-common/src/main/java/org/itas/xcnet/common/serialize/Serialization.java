@@ -49,21 +49,21 @@ public interface Serialization {
 	 * serialize 
 	 * 
 	 * @param url 
-	 * @param output 
+	 * @param out 
 	 * @return
 	 * @throws java.io.IOException
 	 */
 	@Adaptive
-	ObjectOutput serialize(URL url, OutputStream output) throws java.io.IOException;
+	ObjectOutput serialize(URL url, OutputStream out) throws java.io.IOException;
 	
 	/**
 	 * deserialize
 	 * 
 	 * @param url
-	 * @param output
+	 * @param in
 	 * @return
 	 * @throws java.io.IOException
 	 */
 	@Adaptive
-	ObjectInput deserialize(URL url, InputStream output) throws java.io.IOException;
+	ObjectInput deserialize(URL url, InputStream in) throws java.io.IOException;
 }
