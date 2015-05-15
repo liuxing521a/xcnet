@@ -20,7 +20,7 @@ public class Ext6Impl2 implements Ext6
         return list;
     }
 
-    public void setList(List<String> list) 
+    public void dsetList(List<String> list) 
     {
         this.list = list;
     }

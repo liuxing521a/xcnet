@@ -399,7 +399,7 @@ public final class Bytes {
 	 * @param bs byte array
 	 * @return hex string
 	 */
-	public static String byte2hex(byte[] bs) {
+	public static String bytes2hex(byte[] bs) {
 		return bytes2hex(bs, 0, bs.length);
 	}
 	
@@ -542,7 +542,7 @@ public final class Bytes {
 		if (code.length < 64) 
 			throw new IllegalArgumentException("Base64 code length < 64.");
 		
-		final int MASK6 = 0B111111;
+		final int MASK6 = 0x3F;//0B00111111
 		boolean pad = code.length > 64; //has pad char
 		int num = len / 3, rem = len % 3, r = off, w = 0;
 		char[] cs = new char[num * 4 + (rem == 0 ? 0 : pad ? 4 : rem + 1)];
@@ -559,8 +559,8 @@ public final class Bytes {
 		
 		if (rem == 1) {
 			int b1 = bs[r++] & 0xFF;
-			cs[w++] = code[ b1 >> 2 ];
-			cs[w++] = code[ ( b1 << 4 ) & MASK6 ];
+			cs[w++] = code[b1 >> 2];
+			cs[w++] = code[(b1 << 4) & MASK6 ];
 			if (pad) {
 				cs[w++] = code[64];
 				cs[w++] = code[64];
@@ -569,8 +569,8 @@ public final class Bytes {
 			int b1 = bs[r++] & 0xFF;
 			int b2 = bs[r++] & 0xFF;
 			cs[w++] = code[b1 >> 2];
-			cs[w++] = code[(b1 << 4) & MASK6 | (b2 >> 2)];
-			cs[w++] = code[(b1 << 2) & MASK6];
+			cs[w++] = code[(b1 << 4) & MASK6 | (b2 >> 4)];
+			cs[w++] = code[(b2 << 2) & MASK6];
 			if (pad) {
 				cs[w++] = code[64];
 			}
@@ -646,7 +646,7 @@ public final class Bytes {
 				--num;
 				rem = 2;
 			} else if (str.charAt(off + len - 1) == pc) {
-				size -= 2;
+				size --;
 				--num;
 				rem = 3;
 			}
@@ -667,8 +667,8 @@ public final class Bytes {
 			int c4 = t[str.charAt(r ++)];
 			
 			b[w ++] = (byte)(c1 << 2 | (c2 >> 4));
-			b[w ++] = (byte)(c1 << 4 | (c3 >> 2));
-			b[w ++] = (byte)(c2 << 6 | c4);
+			b[w ++] = (byte)(c2 << 4 | (c3 >> 2));
+			b[w ++] = (byte)(c3 << 6 | c4);
 		}
 		
 		if (rem == 2) {
@@ -682,7 +682,7 @@ public final class Bytes {
 			int c3 = t[str.charAt(r++)];
 			
 			b[w ++] = (byte)(c1 << 2 | (c2 >> 4));
-			b[w ++] = (byte)(c1 << 4 | (c3 >> 2));
+			b[w ++] = (byte)(c2 << 4 | (c3 >> 2));
 		}
 		
 		return b;

@@ -18,7 +18,7 @@ public interface ObjectInput extends DataInput {
 	 * @return object
 	 * @throws java.io.IOException
 	 */
-	Object readObject() throws java.io.IOException;
+	Object readObject() throws java.io.IOException, ClassNotFoundException;
 
 	/**
 	 * read object
@@ -27,5 +27,5 @@ public interface ObjectInput extends DataInput {
 	 * @return object designated type
 	 * @throws java.io.IOException
 	 */
-	<T> T readObject(Class<T> cls) throws java.io.IOException;
+	<T> T readObject(Class<T> cls) throws java.io.IOException, ClassNotFoundException;
 }

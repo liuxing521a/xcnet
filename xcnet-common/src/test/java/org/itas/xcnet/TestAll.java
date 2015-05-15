@@ -6,6 +6,8 @@ package org.itas.xcnet;
 import org.itas.xcnet.common.ExtensionLoaderTest;
 import org.itas.xcnet.common.bytecode.ProxyTest;
 import org.itas.xcnet.common.bytecode.WrapperTest;
+import org.itas.xcnet.common.io.BytesTest;
+import org.itas.xcnet.common.io.StreamUtilsTest;
 import org.itas.xcnet.common.utils.CollectionUtilsTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -17,13 +19,17 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	//========common===========
+	//========org.itas.xcnet.common===========
 	ExtensionLoaderTest.class,
 	
-	//========bytecode=========
+	//========org.itas.xcnet.common.bytecode=========
 	ProxyTest.class,
 	WrapperTest.class,
 	
+	//========org.itas.xcnet.common.io==========
+	BytesTest.class,
+	StreamUtilsTest.class,
+
 	//========utils==========
 	CollectionUtilsTest.class,
 })
