@@ -36,4 +36,7 @@ import org.junit.runners.Suite.SuiteClasses;
 public class TestAll 
 {
 
+	public static void main(String[] args) {
+		System.out.print(15000 << 1);
+	}
 }

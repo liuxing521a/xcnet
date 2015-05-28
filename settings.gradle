@@ -1,1 +1,2 @@
 include "xcnet-common"
+include "xcnet-remoting"

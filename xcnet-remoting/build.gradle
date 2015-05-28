@@ -1,0 +1,19 @@
+ext {
+    archiveBaseName = "xcnet-remoting"
+}
+
+eclipse.project {
+  name = archiveBaseName
+}
+
+dependencies {
+	compile(project(":xcnet-common"))
+		
+	// common libs
+	compile("org.apache.mina:mina-core:${mina_version}")
+	compile("org.glassfish.grizzly:grizzly-core:${grizzly_version}")
+	compile("org.jboss.netty:netty:${netty_version}")
+		
+	// test libs
+	testCompile("junit:junit:${junit_version}") 
+}
